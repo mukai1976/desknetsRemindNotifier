@@ -257,6 +257,9 @@ if __name__ == "__main__":
         text_id_dic[_time][_text].append(_id)
         user_id_dic[_time][_user].append(_id)
 
+    cnt_false = 0
+    cnt_True = 0
+    cnt_None = 0
     for schedule_item in schedule_items:
         #start_time, sch_ymd, end_time, title = schedule_item
         title, sch_ymd, start_time, end_time, location = schedule_item
@@ -265,9 +268,6 @@ if __name__ == "__main__":
         message = "%s %s-%s @%s" % (title, start_time, end_time, location)
         unix_starttime = int(time.mktime( sch_ymd.timetuple() ))
 
-        cnt_false = 0
-        cnt_True = 0
-        cnt_None = 0
         for slack_user in slack_users_list:
             if((unix_starttime in text_id_dic) and (message in text_id_dic[unix_starttime]) and (unix_starttime in user_id_dic) and (slack_user in user_id_dic[unix_starttime])  ):
                 cnt_None+=1
