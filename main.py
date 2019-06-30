@@ -86,7 +86,6 @@ def post_reminder(text,time,user):
     sc = SlackClient(SLACK_TOKEN)
     return sc.api_call(
         "reminders.add",
-        token=SLACK_TOKEN,
         text=text,
         time=int(time),
         user=user
